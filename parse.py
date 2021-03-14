@@ -90,7 +90,7 @@ def getDiscoverDeal():
 def getChaseDeal():
     r = requests.get('https://creditcards.chase.com/cash-back-credit-cards/freedom/flex?CELL=60KX')
     soup = BeautifulSoup(r.text, "html.parser")
-    print(soup.prettify())
+    ## find relevant data and store current deal for the quarter
 
 def getBestBuyDeal():
     print("cannot access Best Buy site")
