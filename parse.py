@@ -1,4 +1,6 @@
+import re
 import requests
+from enum import IntEnum
 from bs4 import BeautifulSoup
 from datetime import date
 from collections import namedtuple
@@ -6,48 +8,75 @@ from collections import namedtuple
 today = date.today()
 currentQuarter = ((today.month -1)//3)+1
 
+class Type(IntEnum):
+    Discover = 1
+    Chase = 2
+    AmericanExpress = 3
+    Citi = 4
+    BestBuy = 5
+
+BestCurrentDeals = {
+    ## "category" : (cardType, value) ##
+    "food": (0,1),
+    "travel": (0,1),
+    "gas": (0,1),
+    "other": (0,1)
+}
+
+
 DiscoverItCashBack = {
-    "food": False,
-    "travel": False,
-    "gas": False,
-    "other": False,
-    "Base": 1
+    "food": 1,
+    "travel": 1,
+    "gas": 1,
+    "other": 1,
+    "Base": 1,
+    "id": Type.Discover
 }
 DiscoverCBCurrentOffer = ""
 ChaseFreedom = {
-    "food": False,
-    "travel": False,
-    "gas": False,
-    "other": False,
-    "Base": 1
+    "food": 1,
+    "travel": 1,
+    "gas": 1,
+    "other": 1,
+    "Base": 1,
+    "id": Type.Chase
 }
 ChaseFreedomCurrentOffer = ""
 AECashMagnet = {
-    "food": False,
-    "travel": False,
-    "gas": False,
-    "other": False,
-    "Base": 1.5
+    "food": 1.5,
+    "travel": 1.5,
+    "gas": 1.5,
+    "other": 1.5,
+    "Base": 1.5,
+    "id": Type.AmericanExpress
 }
 CitiQuicksilver = {
-    "food": False,
-    "travel": False,
-    "gas": False,
-    "other": False,
-    "Base": 1.5
+    "food": 1.5,
+    "travel": 1.5,
+    "gas": 1.5,
+    "other": 1.5,
+    "Base": 1.5,
+    "id": Type.Citi
 }
 BestBuyVisa = {
-    "food": False,
-    "travel": False,
-    "gas": False,
-    "other": False,
-    "Base": 1
+    "food": 2,
+    "travel": 1,
+    "gas": 3,
+    "other": 1,
+    "Base": 1,
+    "id": Type.BestBuy
 }
-
+cardList = []
+cardList.append(DiscoverItCashBack)
+cardList.append(ChaseFreedom)
+cardList.append(CitiQuicksilver)
+cardList.append(AECashMagnet)
+cardList.append(BestBuyVisa)
 
 def updateDeals():
     global DiscoverCBCurrentOffer 
     DiscoverCBCurrentOffer = getDiscoverDeal()
+    getChaseDeal()
 
 def getDiscoverDeal():
     r = requests.get('https://www.discover.com/credit-cards/cashback-bonus/cashback-calendar.html')
@@ -69,32 +98,86 @@ def getDiscoverDeal():
             break
     
     if "Gas" in DiscoverDeal:
-        DiscoverItCashBack.update({"gas": True})
+        DiscoverItCashBack.update({"gas": 5})
     else:
-        DiscoverItCashBack.update({"gas": False})
+        DiscoverItCashBack.update({"gas": 1})
     if "Food" in DiscoverDeal or "Dining" in DiscoverDeal or "Restaurants" in DiscoverDeal or "Grocery" in DiscoverDeal:
-        DiscoverItCashBack.update({"food": True})
+        DiscoverItCashBack.update({"food": 5})
     else:
-        DiscoverItCashBack.update({"food": False})
+        DiscoverItCashBack.update({"food": 1})
     if "Travel" in DiscoverDeal:
-        DiscoverItCashBack.update({"travel": True})
+        DiscoverItCashBack.update({"travel": 5})
     else:
-        DiscoverItCashBack.update({"travel": False})
-    if DiscoverItCashBack.get("food") == False and DiscoverItCashBack.get("gas") == False and DiscoverItCashBack.get("travel") == False:
-        DiscoverItCashBack.update({"other": True})
+        DiscoverItCashBack.update({"travel": 1})
+    if DiscoverItCashBack.get("food") == 1 and DiscoverItCashBack.get("gas") == 1 and DiscoverItCashBack.get("travel") == 1:
+        DiscoverItCashBack.update({"other": 5})
     else:
-        DiscoverItCashBack.update({"other": False})
+        DiscoverItCashBack.update({"other": 1})
 
     return DiscoverDeal
 
 def getChaseDeal():
     r = requests.get('https://creditcards.chase.com/cash-back-credit-cards/freedom/flex?CELL=60KX')
     soup = BeautifulSoup(r.text, "html.parser")
-    ## find relevant data and store current deal for the quarter
+    
+    divList = soup.find_all("div", class_= "primary-item-content")
+    offerDiv = divList[1]
+    offersList = list()
+    num = 1
+    for tag in offerDiv.find_all("p"):
+        if(num != 1):
+            offersList.append(tag.text)
+        num += 1
+    
 
-def getBestBuyDeal():
-    print("cannot access Best Buy site")
+    for sentence in offersList:
+        wordList = sentence.split()
+        value = wordList[1]
+        value = int(value[:-1])
+        
+        if "gas" in sentence.lower():
+            ChaseFreedom.update({"gas": value})
+        if "travel" in sentence.lower():
+            ChaseFreedom.update({"travel": value})
+        if "food" in sentence.lower() or "dining" in sentence.lower() or "grocery" in sentence.lower() or "restaurants" in sentence.lower():
+            ChaseFreedom.update({"food": value})
+        if "other" in sentence.lower():
+            ChaseFreedom.update({"other": value}) 
+
+def getBestInEach():
+    maxFood = cardList[0].get("food")
+    maxTravel = cardList[0].get("travel")
+    maxGas = cardList[0].get("gas")
+    maxOther = cardList[0].get("other")
+    maxCard = cardList[0].get("id")
+    BestCurrentDeals.update({"food": (maxCard, maxFood)})
+    BestCurrentDeals.update({"travel": (maxCard, maxTravel)})
+    BestCurrentDeals.update({"gas": (maxCard, maxGas)})
+    BestCurrentDeals.update({"other": (maxCard, maxOther)})
+    
+    for card in range(1, len(cardList)):
+        currentCard = cardList[card]["id"]
+        if cardList[card]["food"] > maxFood:
+            maxFood = cardList[card]["food"]
+            BestCurrentDeals.update({"food": (currentCard, maxFood)})
+        if cardList[card]["travel"] > maxTravel:
+            maxTravel = cardList[card]["travel"]
+            BestCurrentDeals.update({"travel": (currentCard, maxTravel)})
+        if cardList[card]["gas"] > maxGas:
+            maxGas = cardList[card]["gas"]
+            BestCurrentDeals.update({"gas": (currentCard, maxGas)})
+        if cardList[card]["other"] > maxOther:
+            maxOther = cardList[card]["other"]
+            BestCurrentDeals.update({"other": (currentCard, maxOther)})
+
+    
 
 
-getBestBuyDeal()
 
+updateDeals()
+getBestInEach()
+print("Discover: ",DiscoverItCashBack)
+print("Chase: ", ChaseFreedom)
+print("AE: ",AECashMagnet)
+print("Quicksilver", CitiQuicksilver)
+print("BEST: ", BestCurrentDeals)
