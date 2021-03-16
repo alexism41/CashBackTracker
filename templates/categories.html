@@ -1,45 +1,15 @@
 {% extends "base.html"%}
 {% block title %} Categories {% endblock %}
 {% block content %}
-<div class="message-text">
-  <p>List best cash back card for various categories. (WIP)</p>
-</div>
-<div id="container-cards">
-  <div class="row items-start">
-      <div class="card" style="width: 18rem;">
-          <img src= {{url_for('static', filename = 'images/Chase-Freedom.png')}} class="card-img-top" alt="Chase Freedom Credit Card">
-          <div class="card-body">
-            <h5 class="card-title">Best in Food/Dining</h5>
-            <p class="card-text">Chase Freedom: 3% Cashback</p>
-            <a href="https://creditcards.chase.com/cash-back-credit-cards/freedom/flex?iCELL=6C1Y" class="btn btn-primary">More info</a>
-          </div>
-        </div>
-      <div class="card" style="width: 18rem;">
-          <img src= {{url_for('static', filename = 'images/discover-credit-card1.png')}} class="card-img-top" alt="Discover Cash Back Credit Card">
-          <div class="card-body">
-            <h5 class="card-title">Best in Travel</h5>
-            <p class="card-text">Discover CashBack Card: 5% Cashback</p>
-            <a href="https://www.discover.com/credit-cards/cash-back/it-card.html" class="btn btn-primary">More info</a>
-          </div>
-        </div>
+<div class="layout">
+  <div class="adBlockOne">
+    Ad here
   </div>
-  <div class="row items-center">
-      <div class="card" style="width: 18rem;">
-          <img src= {{url_for('static', filename = 'images/CapitolOne-Quicksilver.jpg')}} class="card-img-top" alt="Capitol One Quicksilver Credit Card">
-          <div class="card-body">
-            <h5 class="card-title">Best in Online Purchases</h5>
-            <p class="card-text">Capitol One Quicksilver: 2.5% Cashback</p>
-            <a href="https://www.capitalone.com/credit-cards/quicksilver/" class="btn btn-primary">More info</a>
-          </div>
-        </div>
-      <div class="card" style="width: 18rem;">
-          <img src= {{url_for('static', filename = 'images/AE-CashMagnet.jpg')}} class="card-img-top" alt="American Express Cash Magnet Credit Card">
-          <div class="card-body">
-            <h5 class="card-title">Best in Everyday Purchases</h5>
-            <p class="card-text">American Express Cash Magnet: 2% Cashback</p>
-            <a href="https://www.americanexpress.com/us/credit-cards/card/cash-magnet/" class="btn btn-primary">More info</a>
-          </div>
-        </div>
+  <div class="cardDisplay">
+    <h1 class="pageTitle">Currently Tacked Cards:</h1>
+    <p>{{cList}}</p>
+  <div class="adBlockTwo">
+    Ad here
   </div>
 </div>
 

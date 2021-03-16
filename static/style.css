@@ -37,6 +37,7 @@
     grid-column-end: 4;
     
 }
+
 .navbar-brand:hover {
     color: #2D6A4F;
 }
@@ -49,7 +50,7 @@
     line-height: 49px;
     color: #74C69D;
 }
-.homeTitle {
+.pageTitle {
     grid-column-start: 2;
     grid-column-end: 4;
     padding: 25px;
