@@ -1,31 +1,27 @@
 {%extends "base.html"%}
 {% block title %} Cash Back Tracker {% endblock %}
 {% block content %}
-<div>
-  <h1>Choose Credit cards:</h1>
-</div>
-<div class="container pt-3">
-  <div class="row align-items-start">
-    <div class="col border bg-light">
-      Chase
-    </div>
-    <div class="col border bg-light">
-      Discover
-    </div>
-    <div class="col border bg-light">
-      Bank of America
-    </div>
+<div class="layout">
+  <div class="adBlockOne">
+    Ad here
   </div>
-  <div class="row align-items-center">
-    <div class="col border bg-light">
-      Best Buy
-    </div>
-    <div class="col border bg-light">
-      Citi
-    </div>
-    <div class="col border bg-light">
-      American Express
-    </div>
+  <div class="cardDisplay">
+    <h1 class = "homeTitle">Best Cash Back Offers:</h1>
+    <article class = "creditCard">
+      <img src= {{url_for('static', filename = 'images/Chase-Freedom.png')}} class="cardImage" alt="Chase Freedom Credit Card" width="250" height="140">
+      <div class="cardInfo">
+        <h2 class="cardName">
+          Chase
+        </h2>
+        <p class="descriptionText">This is the description for this card.</p>
+        <a href="https://www.discover.com/credit-cards/cash-back/it-card.html" class="btn btn-outline-success btn-lg">More info</a>
+      </div>
+    </article>
+  </div>
+  <div class="adBlockTwo">
+    Ad here
   </div>
 </div>
+
+
 {% endblock %}
