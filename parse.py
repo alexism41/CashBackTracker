@@ -145,6 +145,7 @@ def getChaseDeal():
             ChaseFreedom.update({"other": value}) 
 
 def getBestInEach():
+    updateDeals()
     maxFood = cardList[0].get("food")
     maxTravel = cardList[0].get("travel")
     maxGas = cardList[0].get("gas")
@@ -169,15 +170,4 @@ def getBestInEach():
         if cardList[card]["other"] > maxOther:
             maxOther = cardList[card]["other"]
             BestCurrentDeals.update({"other": (currentCard, maxOther)})
-
-    
-
-
-
-updateDeals()
-getBestInEach()
-print("Discover: ",DiscoverItCashBack)
-print("Chase: ", ChaseFreedom)
-print("AE: ",AECashMagnet)
-print("Quicksilver", CitiQuicksilver)
-print("BEST: ", BestCurrentDeals)
+    return BestCurrentDeals

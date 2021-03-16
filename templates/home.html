@@ -8,13 +8,223 @@
   <div class="cardDisplay">
     <h1 class = "homeTitle">Best Cash Back Offers:</h1>
     <article class = "creditCard">
-      <img src= {{url_for('static', filename = 'images/Chase-Freedom.png')}} class="cardImage" alt="Chase Freedom Credit Card" width="250" height="140">
+      {% if deals.food[0] == 1 %}
+        <img src= {{url_for('static', filename = 'images/discover-credit-card1.png')}} class="cardImage" alt="Discover Cash Back Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.food[0] == 2 %}
+        <img src= {{url_for('static', filename = 'images/Chase-Freedom.png')}} class="cardImage" alt="Chase Freedom Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.food[0] == 3 %}
+        <img src= {{url_for('static', filename = 'images/AE-CashMagnet.jpg')}} class="cardImage" alt="American Express Cash Magnet Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.food[0] == 4 %}
+        <img src= {{url_for('static', filename = 'images/CapitolOne-Quicksilver.jpg')}} class="cardImage" alt="Capitol One Quicksilver Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.food[0] == 5 %}
+        <img src= {{url_for('static', filename = 'images/BestBuyVisa')}} class="cardImage" alt="Best Buy Credit Card" width="250" height="140">
+      {% endif %}
       <div class="cardInfo">
         <h2 class="cardName">
-          Chase
+          {% if deals.food[0] == 1 %}
+            Discover it Cash Back
+          {% endif %}
+          {% if deals.food[0] == 2 %}
+            Chase Freedom Flex
+          {% endif %}
+          {% if deals.food[0] == 3 %}
+            American Express Cash Magnet
+          {% endif %}
+          {% if deals.food[0] == 4 %}
+            Citi Quicksilver
+          {% endif %}
+          {% if deals.food[0] == 5 %}
+            BestBuy Visa
+          {% endif %}
         </h2>
-        <p class="descriptionText">This is the description for this card.</p>
-        <a href="https://www.discover.com/credit-cards/cash-back/it-card.html" class="btn btn-outline-success btn-lg">More info</a>
+        <h3 class="categoryTitle">Best for Food/Dining: {{deals.food[1]}}% back</h3>
+        <p class="descriptionText">
+          This card offers the best cashback on dining purchases.
+        </p>
+        {% if deals.food[0] == 1 %}
+          <a href="https://www.discover.com/credit-cards/cash-back/it-card.html" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.food[0] == 2 %}
+          <a href="https://creditcards.chase.com/cash-back-credit-cards/freedom/flex?iCELL=6C1Y" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.food[0] == 3 %}
+          <a href="https://www.americanexpress.com/us/credit-cards/card/cash-magnet/" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.food[0] == 4 %}
+          <a href="https://www.capitalone.com/credit-cards/quicksilver/" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.food[0] == 5 %}
+          <a href="https://www.bestbuy.com/site/misc/financing-rewards/pcmcat102500050032.c?id=pcmcat102500050032" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+      </div>
+    </article>
+    <article class = "creditCard">
+      {% if deals.travel[0] == 1 %}
+        <img src= {{url_for('static', filename = 'images/discover-credit-card1.png')}} class="cardImage" alt="Discover Cash Back Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.travel[0] == 2 %}
+        <img src= {{url_for('static', filename = 'images/Chase-Freedom.png')}} class="cardImage" alt="Chase Freedom Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.travel[0] == 3 %}
+        <img src= {{url_for('static', filename = 'images/AE-CashMagnet.jpg')}} class="cardImage" alt="American Express Cash Magnet Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.travel[0] == 4 %}
+        <img src= {{url_for('static', filename = 'images/CapitolOne-Quicksilver.jpg')}} class="cardImage" alt="Capitol One Quicksilver Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.travel[0] == 5 %}
+        <img src= {{url_for('static', filename = 'images/BestBuyVisa')}} class="cardImage" alt="Best Buy Credit Card" width="250" height="140">
+      {% endif %}
+      <div class="cardInfo">
+        <h2 class="cardName">
+          {% if deals.travel[0] == 1 %}
+            Discover it Cash Back
+          {% endif %}
+          {% if deals.travel[0] == 2 %}
+            Chase Freedom Flex
+          {% endif %}
+          {% if deals.travel[0] == 3 %}
+            American Express Cash Magnet
+          {% endif %}
+          {% if deals.travel[0] == 4 %}
+            Capitol One Quicksilver
+          {% endif %}
+          {% if deals.travel[0] == 5 %}
+            BestBuy Visa
+          {% endif %}
+        </h2>
+        <h3 class="categoryTitle">Best for Travel: {{deals.travel[1]}}% back</h3>
+        <p class="descriptionText">
+          This card offers the best cashback on travel purchases.
+        </p>
+        {% if deals.travel[0] == 1 %}
+          <a href="https://www.discover.com/credit-cards/cash-back/it-card.html" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.travel[0] == 2 %}
+          <a href="https://creditcards.chase.com/cash-back-credit-cards/freedom/flex?iCELL=6C1Y" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.travel[0] == 3 %}
+          <a href="https://www.americanexpress.com/us/credit-cards/card/cash-magnet/" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.travel[0] == 4 %}
+          <a href="https://www.capitalone.com/credit-cards/quicksilver/" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.travel[0] == 5 %}
+          <a href="https://www.bestbuy.com/site/misc/financing-rewards/pcmcat102500050032.c?id=pcmcat102500050032" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+      </div>
+    </article>
+    <article class = "creditCard">
+      {% if deals.gas[0] == 1 %}
+        <img src= {{url_for('static', filename = 'images/discover-credit-card1.png')}} class="cardImage" alt="Discover Cash Back Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.gas[0] == 2 %}
+        <img src= {{url_for('static', filename = 'images/Chase-Freedom.png')}} class="cardImage" alt="Chase Freedom Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.gas[0] == 3 %}
+        <img src= {{url_for('static', filename = 'images/AE-CashMagnet.jpg')}} class="cardImage" alt="American Express Cash Magnet Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.gas[0] == 4 %}
+        <img src= {{url_for('static', filename = 'images/CapitolOne-Quicksilver.jpg')}} class="cardImage" alt="Capitol One Quicksilver Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.gas[0] == 5 %}
+        <img src= {{url_for('static', filename = 'images/BestBuyVisa.jpg')}} class="cardImage" alt="Best Buy Credit Card" width="250" height="140">
+      {% endif %}
+      <div class="cardInfo">
+        <h2 class="cardName">
+          {% if deals.gas[0] == 1 %}
+            Discover it Cash Back
+          {% endif %}
+          {% if deals.gas[0] == 2 %}
+            Chase Freedom Flex
+          {% endif %}
+          {% if deals.gas[0] == 3 %}
+            American Express Cash Magnet
+          {% endif %}
+          {% if deals.gas[0] == 4 %}
+            Capitol One Quicksilver
+          {% endif %}
+          {% if deals.gas[0] == 5 %}
+            BestBuy Visa
+          {% endif %}
+        </h2>
+        <h3 class="categoryTitle">Best for Gas: {{deals.gas[1]}}% back</h3>
+        <p class="descriptionText">
+          This card offers the best cashback on gas purchases.
+        </p>
+        {% if deals.gas[0] == 1 %}
+          <a href="https://www.discover.com/credit-cards/cash-back/it-card.html" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.gas[0] == 2 %}
+          <a href="https://creditcards.chase.com/cash-back-credit-cards/freedom/flex?iCELL=6C1Y" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.gas[0] == 3 %}
+          <a href="https://www.americanexpress.com/us/credit-cards/card/cash-magnet/" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.gas[0] == 4 %}
+          <a href="https://www.capitalone.com/credit-cards/quicksilver/" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.gas[0] == 5 %}
+          <a href="https://www.bestbuy.com/site/misc/financing-rewards/pcmcat102500050032.c?id=pcmcat102500050032" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+      </div>
+    </article>
+    <article class = "creditCard">
+      {% if deals.other[0] == 1 %}
+        <img src= {{url_for('static', filename = 'images/discover-credit-card1.png')}} class="cardImage" alt="Discover Cash Back Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.other[0] == 2 %}
+        <img src= {{url_for('static', filename = 'images/Chase-Freedom.png')}} class="cardImage" alt="Chase Freedom Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.other[0] == 3 %}
+        <img src= {{url_for('static', filename = 'images/AE-CashMagnet.jpg')}} class="cardImage" alt="American Express Cash Magnet Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.other[0] == 4 %}
+        <img src= {{url_for('static', filename = 'images/CapitolOne-Quicksilver.jpg')}} class="cardImage" alt="Capitol One Quicksilver Credit Card" width="250" height="140">
+      {% endif %}
+      {% if deals.other[0] == 5 %}
+        <img src= {{url_for('static', filename = 'images/BestBuyVisa.jpg')}} class="cardImage" alt="Best Buy Credit Card" width="250" height="140">
+      {% endif %}
+      <div class="cardInfo">
+        <h2 class="cardName">
+          {% if deals.other[0] == 1 %}
+            Discover it Cash Back
+          {% endif %}
+          {% if deals.other[0] == 2 %}
+            Chase Freedom Flex
+          {% endif %}
+          {% if deals.other[0] == 3 %}
+            American Express Cash Magnet
+          {% endif %}
+          {% if deals.other[0] == 4 %}
+            Capitol One Quicksilver
+          {% endif %}
+          {% if deals.other[0] == 5 %}
+            BestBuy Visa
+          {% endif %}
+        </h2>
+        <h3 class="categoryTitle">Best for Everyday Purchases: {{deals.other[1]}}% back</h3>
+        <p class="descriptionText">
+          This card offers the best cashback on everyday purchases.
+        </p>
+        {% if deals.other[0] == 1 %}
+          <a href="https://www.discover.com/credit-cards/cash-back/it-card.html" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.other[0] == 2 %}
+          <a href="https://creditcards.chase.com/cash-back-credit-cards/freedom/flex?iCELL=6C1Y" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.other[0] == 3 %}
+          <a href="https://www.americanexpress.com/us/credit-cards/card/cash-magnet/" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.other[0] == 4 %}
+          <a href="https://www.capitalone.com/credit-cards/quicksilver/" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
+        {% if deals.other[0] == 5 %}
+          <a href="https://www.bestbuy.com/site/misc/financing-rewards/pcmcat102500050032.c?id=pcmcat102500050032" class="btn btn-outline-success btn-lg">More info</a>
+        {% endif %}
       </div>
     </article>
   </div>

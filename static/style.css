@@ -44,10 +44,9 @@
 .nav-item nav-link:hover {
     color: #2D6A4F;
 }
-.cardName{
-    padding:12px;
-    font-size: 50px;
-    line-height: 53px;
+.categoryTitle{
+    font-size: 45px;
+    line-height: 49px;
     color: #74C69D;
 }
 .homeTitle {
@@ -67,6 +66,10 @@
 .descriptionText {
     color: #D8F3DC;
     
+}
+.cardName {
+    color: #40916C;
+    padding: 10px;
 }
 .cardImage {
     margin: 20px 20px;
