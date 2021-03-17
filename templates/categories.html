@@ -1,15 +1,27 @@
+{% from "macros.html" import card_table, display_tableName %}
+
 {% extends "base.html"%}
-{% block title %} Categories {% endblock %}
+{% block title %} Cards {% endblock %}
 {% block content %}
 <div class="layout">
   <div class="adBlockOne">
-    Ad here
+    
   </div>
   <div class="cardDisplay">
-    <h1 class="pageTitle">Currently Tacked Cards:</h1>
-    <p>{{cList}}</p>
+    <h1 class="pageTitle">Currently Tracked Cards:</h1>
+    {{ display_tableName(cList[0]) }}
+    {{ card_table(cList[0])}}
+    {{ display_tableName(cList[1]) }}
+    {{ card_table(cList[1])}}
+    {{ display_tableName(cList[2]) }}
+    {{ card_table(cList[2])}}
+    {{ display_tableName(cList[3]) }}
+    {{ card_table(cList[3])}}
+    {{ display_tableName(cList[4]) }}
+    {{ card_table(cList[4])}}
+  </div>
   <div class="adBlockTwo">
-    Ad here
+    
   </div>
 </div>
 

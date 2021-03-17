@@ -15,5 +15,9 @@ def home():
 def Categories():
     return render_template("categories.html", headers= headers, cList = data)
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 if __name__ == "__main__":
     app.run(debug = True)

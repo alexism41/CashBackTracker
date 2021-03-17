@@ -19,31 +19,19 @@
 
 }
 .adBlockOne {
-    padding: 10px;
-    
     grid-column-start: 1;
     grid-column-end: 2;
 }
 .adBlockTwo {
-    padding: 10px;
-    
     grid-column-start: 4;
-    grid-column-end: 5;
 }
 .cardDisplay {
     padding: 10px;
     position: relative;
     grid-column-start: 2;
     grid-column-end: 4;
+    gap: 10px;
     
-}
-
-.navbar-brand:hover {
-    color: #2D6A4F;
-}
-
-.nav-item nav-link:hover {
-    color: #2D6A4F;
 }
 .categoryTitle{
     font-size: 45px;
@@ -64,9 +52,14 @@
     border-radius: 15px;
     height: 300px;  
 }
+
 .descriptionText {
     color: #D8F3DC;
     
+}
+.descriptionText2 {
+    color: #D8F3DC;
+    padding: 30px;
 }
 .cardName {
     color: #40916C;
@@ -75,5 +68,17 @@
 .cardImage {
     margin: 20px 20px;
     float: left;
+}
+
+.siteLink {
+    color: #081C15;
+}
+
+.siteLink:hover {
+    color:#D8F3DC;
+}
+
+.cbtInfo {
+    color: #40916C;
 }
 

@@ -1,0 +1,50 @@
+{% macro heading_row() %}
+    <tr class="table_headers">
+        <th class="table_cell">Category</th>
+        <th class="table_cell">Cashback</th>
+    </tr>
+{% endmacro %}
+
+{% macro data_rows(data) %}
+    <tr class="table_row">
+        <td class="table_cell">Food</td>
+        <td class="table_cell">{{ data.get("food") }}%</td>
+    </tr>
+    <tr class="table_row">
+        <td class="table_cell">Travel</td>
+        <td class="table_cell">{{ data.get("travel") }}%</td>
+    </tr>
+    <tr class="table_row">
+        <td class="table_cell">Gas</td>
+        <td class="table_cell">{{ data.get("gas") }}%</td>
+    </tr>
+    <tr class="table_row">
+        <td class="table_cell">Other</td>
+        <td class="table_cell">{{ data.get("other") }}%</td>
+    </tr>
+{% endmacro %}
+
+{% macro card_table(data) %}
+    <table class="table">
+        {{ heading_row() }}
+        {{ data_rows(data) }}
+    </table>
+{% endmacro %}
+
+{% macro display_tableName(data) %}
+    {% if data.get("id") == 1 %}
+        <a href="https://www.discover.com/credit-cards/cash-back/it-card.html"><h5 class="siteLink">Discover it Cash Back</h5></a>
+    {% endif %}
+    {% if data.get("id") == 2 %}
+        <a href="https://creditcards.chase.com/cash-back-credit-cards/freedom/flex?iCELL=6C1Y"><h5 class="siteLink">Chase Freedom Flex</h5></a>    
+    {% endif %}
+    {% if data.get("id") == 3 %}
+        <a href="https://www.americanexpress.com/us/credit-cards/card/cash-magnet/"><h5 class="siteLink">American Express Cash Magnet</h5></a>
+    {% endif %}
+    {% if data.get("id") == 4 %}
+        <a href="https://www.capitalone.com/credit-cards/quicksilver/"><h5 class="siteLink">Capitol One Quicksilver</h5></a>
+    {% endif %}
+    {% if data.get("id") == 5 %}
+        <a href="https://www.bestbuy.com/site/misc/financing-rewards/pcmcat102500050032.c?id=pcmcat102500050032"><h5 class="siteLink">BestBuy Visa</h5></a>
+    {% endif %}
+{% endmacro %}
