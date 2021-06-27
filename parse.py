@@ -1,5 +1,7 @@
 import re
 import requests
+import time
+from msedge.selenium_tools import Edge, EdgeOptions
 from enum import IntEnum
 from bs4 import BeautifulSoup
 from datetime import date
@@ -79,23 +81,36 @@ def updateDeals():
     getChaseDeal()
 
 def getDiscoverDeal():
-    r = requests.get('https://www.discover.com/credit-cards/cashback-bonus/cashback-calendar.html')
-    soup = BeautifulSoup(r.text, "html.parser")
-    quarter = "q"+str(currentQuarter)
+    """
+    using selenium to load page in order to scrape apporpriate data
+    """
+    webdriver_location = "C:\Program Files\EdgeWebDriver\msedgedriver.exe"
+    url = 'https://www.discover.com/credit-cards/cashback-bonus/cashback-calendar.html'
+    options = EdgeOptions()
+    options.use_chromium = True
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    driver = Edge(options=options, executable_path=webdriver_location)
+    driver.get(url)
+    time.sleep(3)
+    page = driver.page_source
+    driver.quit()
+    
+    """
+    parse fully loaded page
+    """
+    soup = BeautifulSoup(page, "html.parser")
+    parent = soup.find('body')
+    quarter = "Q"+str(currentQuarter)
+    currentOffer = ""
 
-    for comp in soup.find_all(id = quarter):
-        currentOffer = comp.p.text
+    quarterTag = soup.find(attrs={"data-promoqtr": quarter})
+    offerTags = quarterTag.find_all("p", class_="tab-offer-heading text-bold")
+    
+    for innerTag in offerTags:
+        currentOffer += innerTag.text
 
-    willSave = False
-    DiscoverDeal = ""
-    for word in currentOffer.split():
-        if willSave and word != "from":
-            DiscoverDeal += word + " "
-        if word == "at":
-            willSave = True
-        if word == "from":
-            willSave = False
-            break
+    DiscoverDeal = currentOffer
     
     if "Gas" in DiscoverDeal:
         DiscoverItCashBack.update({"gas": 5})
